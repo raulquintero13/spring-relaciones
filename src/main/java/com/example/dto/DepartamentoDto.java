@@ -10,7 +10,7 @@ import jakarta.persistence.*;
 public class DepartamentoDto {
 
 	
-	private Long id;
+	private Long idDepartamento;
 	private String nombre;
 	private String direccion;
 	private List<Empleado> empleados;
@@ -23,9 +23,9 @@ public class DepartamentoDto {
 
 
 
-	public DepartamentoDto(Long id, String nombre, String direccion, List<Empleado> empleados) {
+	public DepartamentoDto(Long idDepartamento, String nombre, String direccion, List<Empleado> empleados) {
 		super();
-		this.id = id;
+		this.idDepartamento = idDepartamento;
 		this.nombre = nombre;
 		this.direccion = direccion;
 		this.empleados = empleados;
@@ -33,14 +33,14 @@ public class DepartamentoDto {
 
 
 
-	public Long getId() {
-		return id;
+	public Long getIdDepartamento() {
+		return idDepartamento;
 	}
 
 
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setIdDepartamento(Long idDepartamento) {
+		this.idDepartamento = idDepartamento;
 	}
 
 
@@ -83,7 +83,7 @@ public class DepartamentoDto {
 
 	@Override
 	public String toString() {
-		return "DepartamentoDto [id=" + id + ", nombre=" + nombre + ", direccion=" + direccion + ", empleados="
+		return "DepartamentoDto [idDepartamento=" + idDepartamento + ", nombre=" + nombre + ", direccion=" + direccion + ", empleados="
 				+ empleados + "]";
 	}
 	

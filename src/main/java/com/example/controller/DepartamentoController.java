@@ -74,12 +74,12 @@ public class DepartamentoController {
 			
 		}catch(DataAccessException e) {
 			response.put("error", e.getMessage().concat(e.getMostSpecificCause().getLocalizedMessage().toString()));
-			response.put("mensaje", "Error al tratar de actualizar el registo " + departamentoDto.getId());
+			response.put("mensaje", "Error al tratar de actualizar el registo " + departamentoDto.getIdDepartamento());
 			return new ResponseEntity<Map<String, Object>>(response,HttpStatus. INTERNAL_SERVER_ERROR);
 		}
 		
 		
-		response.put("mensaje", "Registro Grabado con exito, con el ID "+ departamentoDto.getId() +" "  );
+		response.put("mensaje", "Registro Grabado con exito, con el ID "+ departamentoDto.getIdDepartamento() +" "  );
 		response.put("brand", departamentoDto);
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
 		

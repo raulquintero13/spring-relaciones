@@ -1,25 +1,15 @@
-package com.example.entity;
+package com.example.dto;
 
-import java.io.Serializable;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import jakarta.persistence.*;
-
-@Entity
-@Table (name="empleados")
-public class Empleado implements Serializable{
+import com.example.entity.Departamento;
 
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+public class EmpleadoDto {
+
+
+
+
+	
 	private Long idEmpleado;
 	private String nombre;
 	private String apellido;
@@ -29,18 +19,14 @@ public class Empleado implements Serializable{
 	private String telefono;
 	private String correo;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="departamentoId")
-	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-	@JsonBackReference
+	
 	private Departamento departamento;
 
 	
 	
 	
 	
-	public Empleado() {
+	public EmpleadoDto() {
 		super();
 	}
 
@@ -48,7 +34,7 @@ public class Empleado implements Serializable{
 
 
 
-	public Empleado(Long idEmpleado, String nombre, String apellido, String curp, String rfc, Integer edad, String telefono,
+	public EmpleadoDto(Long idEmpleado, String nombre, String apellido, String curp, String rfc, Integer edad, String telefono,
 			String correo, Departamento departamento) {
 		super();
 		this.idEmpleado = idEmpleado;

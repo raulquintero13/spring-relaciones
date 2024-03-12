@@ -24,13 +24,19 @@ public class Departamento implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
+	private Long idDepartamento;
 	private String nombre;
+	private String descripcion;
 	private String direccion;
 	
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy ="id", cascade = CascadeType.ALL )
+	@OneToMany(
+		fetch = FetchType.EAGER, 
+		orphanRemoval = true,
+		mappedBy ="departamento", 
+		cascade = CascadeType.ALL )
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	@JsonManagedReference
 	private List<Empleado> empleados;
 
 	
@@ -41,24 +47,25 @@ public class Departamento implements Serializable{
 
 
 
-	public Departamento(Long id, String nombre, String direccion, List<Empleado> empleados) {
+	public Departamento(Long idDepartamento, String nombre, String descripcion, String direccion, List<Empleado> empleados) {
 		super();
-		this.id = id;
+		this.idDepartamento = idDepartamento;
 		this.nombre = nombre;
+		this.descripcion = descripcion;
 		this.direccion = direccion;
 		this.empleados = empleados;
 	}
 
 
 
-	public Long getId() {
-		return id;
+	public Long getIdDepartamento() {
+		return idDepartamento;
 	}
 
 
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setIdDepartamento(Long idDepartamento) {
+		this.idDepartamento = idDepartamento;
 	}
 
 
@@ -71,6 +78,18 @@ public class Departamento implements Serializable{
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
 
@@ -100,7 +119,7 @@ public class Departamento implements Serializable{
 	
 	@Override
 	public String toString() {
-		return "Departamento [id=" + id + ", nombre=" + nombre + ", direccion=" + direccion + ", empleados=" + empleados
+		return "Departamento [idDepartamento=" + idDepartamento + ", nombre=" + nombre + ", direccion=" + direccion + ", empleados=" + empleados
 				+ "]";
 	}
 	

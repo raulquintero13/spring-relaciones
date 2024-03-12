@@ -26,7 +26,7 @@ public class DepartamentoService implements IDepartamentoService {
 
 		for (int i = 0; i < departamentos.size(); i++) {
 
-//		departamentosDto.add(departamentos.get(i));
+		// departamentosDto.add(departamentos.get(i));
 
 		}
 		return departamentos;
@@ -39,10 +39,11 @@ public class DepartamentoService implements IDepartamentoService {
 		departamento = departamentoRepository.findById(id).get();
 		System.out.println(departamento.toString());
 
-		departamentoDto.setId(departamento.getId());
+		departamentoDto.setIdDepartamento(departamento.getIdDepartamento());
 		departamentoDto.setNombre(departamento.getNombre());
-		departamentoDto.setDireccion(departamentoDto.getDireccion());
-//		departamentoDto.setEmpleados(departamentoDto.getEmpleados());
+		departamentoDto.setDireccion(departamento.getDireccion());
+		departamentoDto.setEmpleados(departamento.getEmpleados());
+		System.out.println(departamentoDto.toString());
 
 		return departamentoDto;
 
@@ -57,7 +58,7 @@ public class DepartamentoService implements IDepartamentoService {
 		
 		departamento =  departamentoRepository.save(departamento);
 		
-		departamentoDto.setId(departamento.getId());
+		departamentoDto.setIdDepartamento(departamento.getIdDepartamento());
 		
 		return departamentoDto;
 		
@@ -72,7 +73,7 @@ public class DepartamentoService implements IDepartamentoService {
 		
 		departamento = departamentoRepository.save(departamento);
 		
-		departamentoDto.setId(departamento.getId());
+		departamentoDto.setIdDepartamento(departamento.getIdDepartamento());
 		
 		return departamentoDto;
 	}
