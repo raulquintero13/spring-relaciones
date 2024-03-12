@@ -35,7 +35,9 @@ public class DepartamentoController {
 			
 		}catch(DataAccessException e) {
 			System.out.println("Mensaje de Error en el Catch");
-			response = "Error al eliminar en base de datos";
+			// response = "Error al leer en base de datos";
+			response = e.getMessage().concat(e.getMostSpecificCause().getLocalizedMessage().toString());
+
 			return new ResponseEntity<String>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		return  new ResponseEntity<List<Departamento>>(departamentosDto, HttpStatus.OK);

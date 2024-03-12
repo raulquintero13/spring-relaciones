@@ -31,11 +31,9 @@ public class Departamento implements Serializable{
 	
 	
 	@OneToMany(
-		fetch = FetchType.EAGER, 
-		orphanRemoval = true,
+		fetch = FetchType.LAZY, 
 		mappedBy ="departamento", 
 		cascade = CascadeType.ALL )
-	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	@JsonManagedReference
 	private List<Empleado> empleados;
 

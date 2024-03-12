@@ -3,8 +3,7 @@ package com.example.entity;
 import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 import jakarta.persistence.*;
 
@@ -30,9 +29,7 @@ public class Empleado implements Serializable{
 	private String correo;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="departamentoId")
-	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+	@JoinColumn(name="IdDepartamento")
 	@JsonBackReference
 	private Departamento departamento;
 
