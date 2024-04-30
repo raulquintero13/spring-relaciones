@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.dto.DepartamentoDto;
 import com.example.entity.Departamento;
+import com.example.entity.Empleado;
 import com.example.repository.IDepartamentoRepository;
 
 @Service
@@ -18,34 +19,50 @@ public class DepartamentoService implements IDepartamentoService {
 
 	public List<Departamento> findAll() {
 
-		List<Departamento> departamentos = null;
-		ArrayList<DepartamentoDto> departamentosDto = new ArrayList<>();
-		departamentos = departamentoRepository.findAll();
+		// List<Departamento> departamentos = null;
+		// ArrayList<DepartamentoDto> departamentosDto = new ArrayList<>();
+		// departamentos = departamentoRepository.findAll();
 
-		System.out.println(departamentos.toString());
+		// System.out.println(departamentos.toString());
 
-		for (int i = 0; i < departamentos.size(); i++) {
+		// for (int i = 0; i < departamentos.size(); i++) {
 
 		// departamentosDto.add(departamentos.get(i));
 
-		}
-		return departamentos;
+		// }
+		return departamentoRepository.findAll();
 	}
 
-	public DepartamentoDto findById(Long id) {
+	public List<?> totalEmpleadosById(Long id){
 
-		Departamento departamento = null;
-		DepartamentoDto departamentoDto = new DepartamentoDto();
-		departamento = departamentoRepository.findById(id).get();
-		System.out.println(departamento.toString());
+		return departamentoRepository.totalEmpleadosByID(id);
+	}
 
-		departamentoDto.setIdDepartamento(departamento.getIdDepartamento());
-		departamentoDto.setNombre(departamento.getNombre());
-		departamentoDto.setDireccion(departamento.getDireccion());
-		departamentoDto.setEmpleados(departamento.getEmpleados());
-		System.out.println(departamentoDto.toString());
+	public Departamento findById(Long id) {
 
-		return departamentoDto;
+		// Departamento departamento = null;
+		// DepartamentoDto departamentoDto = new DepartamentoDto();
+		// departamento = departamentoRepository.findById(id).orElse(null);
+		// System.out.println("departamento>>>> "+departamento.toString());
+
+		// DepartamentoDto departamentoDto = new DepartamentoDto(
+		// 	departamento.getIdDepartamento(),
+		// 	departamento.getNombre(),
+		// 	departamento.getDescripcion(),
+		// 	departamento.getDireccion(), 
+		// 	departamento.getEmpleados()		
+		// );
+	
+		// departamentoDto.setIdDepartamento(departamento.getIdDepartamento());
+		// departamentoDto.setNombre(departamento.getNombre());
+		// departamentoDto.setDireccion(departamento.getDireccion());
+		// departamentoDto.setEmpleados(null);
+		// System.out.println("departamentDto>>>> " + departamentoDto.toString());
+
+
+
+
+		return departamentoRepository.findById(id).orElse(null);
 
 	}
 
@@ -68,7 +85,9 @@ public class DepartamentoService implements IDepartamentoService {
 	public DepartamentoDto update(DepartamentoDto departamentoDto) {
 		
 		Departamento departamento = new Departamento();
+		departamento.setIdDepartamento(departamentoDto.getIdDepartamento());
 		departamento.setNombre(departamentoDto.getNombre());
+		departamento.setDescripcion(departamentoDto.getDescripcion());
 		departamento.setDireccion(departamentoDto.getDireccion());
 		
 		departamento = departamentoRepository.save(departamento);

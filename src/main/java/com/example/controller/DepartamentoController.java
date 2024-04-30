@@ -47,11 +47,11 @@ public class DepartamentoController {
 	@GetMapping("departamentos/{id}")
 	public ResponseEntity<?> consultaPorId(@PathVariable Long id){
 		
-		DepartamentoDto departamentoDto = null;
+		Departamento departamento = null;
 		String response = "";
 		
 		try { 
-			departamentoDto = departamentoService.findById(id);
+			 departamento = departamentoService.findById(id);
 			
 		}catch(DataAccessException e) {
 			response = "Error al realizar la consulta.";
@@ -60,16 +60,35 @@ public class DepartamentoController {
 		}
 				
 		
-		return new ResponseEntity<DepartamentoDto>(departamentoDto, HttpStatus.OK);
+		return new ResponseEntity<Departamento>(departamento, HttpStatus.OK);
+	}
+	
+	@GetMapping("departamentos/{id}/total-empleados")
+	public ResponseEntity<?> totalEmpleadosById(@PathVariable Long id){
+		
+		List<?> departamentosDto = null;
+		String response = "";
+		
+		try { 
+			 departamentosDto = departamentoService.totalEmpleadosById(id);
+			
+		}catch(DataAccessException e) {
+			response = "Error al realizar la consulta.";
+			response = response.concat(e.getMessage().concat(e.getMostSpecificCause().toString()));
+			return new ResponseEntity<String>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+				
+		
+		return new ResponseEntity<List<?>>(departamentosDto, HttpStatus.OK);
 	}
 	
 	
 	
-	
 	@PostMapping("/departamentos")
-	@ResponseStatus(HttpStatus.OK)
+	// @ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<?> create(@RequestBody DepartamentoDto departamentoDto){
 		
+		System.out.println("departamentoDto: " + departamentoDto.toString());
 		Map<String, Object> response = new HashMap<>();
 		try {
 			departamentoDto = this.departamentoService.create(departamentoDto);
@@ -87,7 +106,26 @@ public class DepartamentoController {
 		
 	}
 	
-	
+	@PutMapping("/departamentos")
+	@ResponseStatus(HttpStatus.OK)
+	public ResponseEntity<?> update(@RequestBody DepartamentoDto departamentoDto){
+		
+		Map<String, Object> response = new HashMap<>();
+		try {
+			departamentoDto = this.departamentoService.update(departamentoDto);
+			
+		}catch(DataAccessException e) {
+			response.put("error", e.getMessage().concat(e.getMostSpecificCause().getLocalizedMessage().toString()));
+			response.put("mensaje", "Error al tratar de actualizar el registo " + departamentoDto.getIdDepartamento());
+			return new ResponseEntity<Map<String, Object>>(response,HttpStatus. INTERNAL_SERVER_ERROR);
+		}
+		
+		
+		response.put("mensaje", "Registro Grabado con exito, con el ID "+ departamentoDto.getIdDepartamento() +" "  );
+		response.put("brand", departamentoDto);
+		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+		
+	}
 	
 	
 	@DeleteMapping("/departamentos/{id}")

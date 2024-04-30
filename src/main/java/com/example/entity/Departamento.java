@@ -13,13 +13,9 @@ import jakarta.persistence.*;
 
 @Entity
 @Table (name="departamentos")
-public class Departamento implements Serializable{
+public class Departamento {
 
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	
 	
 	@Id
@@ -30,11 +26,9 @@ public class Departamento implements Serializable{
 	private String direccion;
 	
 	
-	@OneToMany(
-		fetch = FetchType.LAZY, 
-		mappedBy ="departamento", 
-		cascade = CascadeType.ALL )
-	@JsonManagedReference
+	@OneToMany(mappedBy ="departamento", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	// @JsonManagedReference
 	private List<Empleado> empleados;
 
 	

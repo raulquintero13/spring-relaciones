@@ -12,8 +12,9 @@ public class DepartamentoDto {
 	
 	private Long idDepartamento;
 	private String nombre;
+	private String descripcion;
 	private String direccion;
-	private List<Empleado> empleados;
+	private List<Empleado> empleados = null;
 
 	
 	
@@ -23,10 +24,11 @@ public class DepartamentoDto {
 
 
 
-	public DepartamentoDto(Long idDepartamento, String nombre, String direccion, List<Empleado> empleados) {
+	public DepartamentoDto(Long idDepartamento, String nombre, String descripcion, String direccion, List<Empleado> empleados) {
 		super();
 		this.idDepartamento = idDepartamento;
 		this.nombre = nombre;
+		this.descripcion = descripcion;
 		this.direccion = direccion;
 		this.empleados = empleados;
 	}
@@ -48,13 +50,24 @@ public class DepartamentoDto {
 	public String getNombre() {
 		return nombre;
 	}
-
-
-
+	
+	
+	
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	
+	public String getDescripcion() {
+		return descripcion;
+	}
 
+
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+	
+	
 
 
 	public String getDireccion() {
@@ -86,8 +99,9 @@ public class DepartamentoDto {
 		return "DepartamentoDto [idDepartamento=" + idDepartamento + ", nombre=" + nombre + ", direccion=" + direccion + ", empleados="
 				+ empleados + "]";
 	}
-	
-	
+
+
+
 	
 	
 	

@@ -42,6 +42,8 @@ public class EmpleadoService implements IEmpleadoService {
 		empleadoDto.setIdEmpleado(empleado.getIdEmpleado());
 		empleadoDto.setNombre(empleado.getNombre());
 		empleadoDto.setApellido(empleado.getApellido());
+		empleadoDto.setEdad(empleado.getEdad());
+		empleadoDto.setCorreo(empleado.getCorreo());
 		System.out.println(empleadoDto.toString());
 
 		return empleadoDto;
@@ -53,6 +55,8 @@ public class EmpleadoService implements IEmpleadoService {
 		
 		Empleado empleado = new Empleado();
 		empleado.setNombre(empleadoDto.getNombre());
+		empleado.setEdad(empleadoDto.getEdad());
+		empleado.setCorreo(empleadoDto.getCorreo());
 		
 		empleado =  empleadoRepository.save(empleado);
 		

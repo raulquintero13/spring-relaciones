@@ -8,7 +8,7 @@ import com.example.entity.Departamento;
 public interface IDepartamentoService {
 
 	public List<Departamento>  findAll();
-	public DepartamentoDto findById(Long id);
+	public Departamento findById(Long id);
 	public DepartamentoDto create(DepartamentoDto departamentoDto);
 	public DepartamentoDto update(DepartamentoDto departamentoDto);
 	public void delete(Long id);

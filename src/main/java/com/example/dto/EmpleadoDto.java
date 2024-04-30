@@ -22,17 +22,9 @@ public class EmpleadoDto {
 	
 	private Departamento departamento;
 
-	
-	
-	
-	
 	public EmpleadoDto() {
 		super();
 	}
-
-
-
-
 
 	public EmpleadoDto(Long idEmpleado, String nombre, String apellido, String curp, String rfc, Integer edad, String telefono,
 			String correo, Departamento departamento) {
@@ -47,10 +39,6 @@ public class EmpleadoDto {
 		this.correo = correo;
 		this.departamento = departamento;
 	}
-
-
-
-
 
 	public Long getIdEmpleado() {
 		return idEmpleado;
